@@ -1,3 +1,4 @@
+
 name: Build Yape Alerta APK
 
 on:
@@ -9,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar proyecto
         uses: actions/checkout@v4
@@ -30,11 +32,11 @@ jobs:
       - name: Extraer proyecto
         run: |
           unzip -q YapeAlerta-Android-Proyecto.zip -d proyecto
-          cd proyecto/YapeAlerta-Android
+          cd proyecto
           gradle assembleDebug
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: YapeAlerta-APK
-          path: proyecto/YapeAlerta-Android/app/build/outputs/apk/debug/app-debug.apk
+          path: proyecto/app/build/outputs/apk/debug/app-debug.apk
